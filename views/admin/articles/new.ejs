@@ -1,0 +1,51 @@
+<%- include('../../partials/header.ejs') %>
+<body>
+   <header>
+    <%- include('../../partials/navbar.ejs')%>
+   </header>
+   <div class="container">
+       <div class="card mt-4">
+           <div class="card-header">
+            <h2>Cadastro de Artigos</h2>
+           </div>
+           <div class="card-body">
+            <form action="/admin/articles/save" class="form-group" method="POST">
+                <label for="title">Título:</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Digite o Título do artigo">
+                <br>
+                <label for="body">Corpo da mensagem:</label>
+                <textarea name="body" id="body" cols="30" rows="10" class="form-control"></textarea>
+                <br>
+                <label for="category">Selecione a categoria:</label>
+               
+                <select name="category" id="category" class="form-control">
+                    <% categories.forEach((category)=>{ %>
+                        <option value="<%= category.id %>"><%= category.title %></option>
+                    <% }) %>
+                </select>
+               
+                <br>
+                <button class="btn btn-primary">Cadastrar</button>
+            </form>
+           </div>
+       
+       
+       </div>
+       
+   </div>
+   
+</body>
+
+
+<%- include('../../partials/footer.ejs')%>
+
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        language: 'pt_BR',
+        selector: "#body",
+        plugins: [
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+        ]
+    })
+</script>
